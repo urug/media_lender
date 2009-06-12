@@ -3,7 +3,7 @@ Feature: Manage movies
   As a legitimate movie owner
   I want to manage my library 
 
-  Scenario: Create new movie
+  Scenario: Create
     Given I am on the new movie page
     When I fill in "Title" with "Raiders of the Lost Ark"
     And I select "PG-13" from "Rating"
@@ -15,7 +15,7 @@ Feature: Manage movies
       | Title                   | Rating | Genre            |
       | Raiders of the Lost Ark | PG-13  | Action/Adventure |
       
-  Scenario: Update movie
+  Scenario: Update
     Given the following movie:
       | Title                   | Rating | Genre            |
       | Raiders of the Lost Ark | PG-13  | Action/Adventure |
@@ -27,9 +27,21 @@ Feature: Manage movies
     And I should see the following movie:
       | Title                   | Rating | Genre  |
       | Raiders of the Lost Ark | PG-13  | Comedy |
+      
+      
+  Scenario: Show
+  Given the following movie:
+    | Title                   | Rating | Genre            | Synopsis                      |
+    | Raiders of the Lost Ark | PG-13  | Action/Adventure | This is a non-stop thriller.  |
+  And I am on the movies page
+  When I click on "Show"
+  Then I should see "Raiders of the Lost Ark"
+  And I should see "This is a non-stop thriller."
+    
+  
     
 
-  Scenario: Delete movie
+  Scenario: Delete
     Given the following movies:
       | Title                   | Rating | Genre            |
       | Raiders of the Lost Ark | PG-13  | Action/Adventure |
