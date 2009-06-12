@@ -29,16 +29,14 @@ Feature: Manage movies
       | Raiders of the Lost Ark | PG-13  | Comedy |
     
 
-  # Scenario: Delete movie
-  #   Given the following movies:
-  #     |title|rating|genre|synopsis|
-  #     |title 1|rating 1|genre 1|synopsis 1|
-  #     |title 2|rating 2|genre 2|synopsis 2|
-  #     |title 3|rating 3|genre 3|synopsis 3|
-  #     |title 4|rating 4|genre 4|synopsis 4|
-  #   When I delete the 3rd movie
-  #   Then I should see the following movies:
-  #     |title|rating|genre|synopsis|
-  #     |title 1|rating 1|genre 1|synopsis 1|
-  #     |title 2|rating 2|genre 2|synopsis 2|
-  #     |title 4|rating 4|genre 4|synopsis 4|
+  Scenario: Delete movie
+    Given the following movies:
+      | Title                   | Rating | Genre            |
+      | Raiders of the Lost Ark | PG-13  | Action/Adventure |
+      | Star Wars: A New Hope   | PG     | Action/Adventure |
+
+    When I delete the 2nd movie
+    Then I should see the following movies:
+      | Title                   | Rating | Genre            |
+      | Raiders of the Lost Ark | PG-13  | Action/Adventure |
+
