@@ -10,6 +10,12 @@ module NavigationHelpers
     
     when /the homepage/
       '/'
+    when /the new movie page/
+      new_movie_path
+
+    when /the new movie page/
+      new_movie_path
+
     
     # Add more mappings here.
     # Here is a more fancy example:
