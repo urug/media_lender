@@ -1,7 +1,6 @@
 <html>
   <head>
-    <title>Movie Lender</title>
-    <%= stylesheet_link_tag 'application' %>
+    <title>Untitled</title>
     <%= use_theme('bitbucket') %>
   </head>
   <body>
@@ -10,7 +9,7 @@
       <div id='header'>
 
         <div id='logo'>
-          <h1>Movie Lender</h1>
+          <%= link_to image_tag('logo', :border => 0, :alt => "My App"), root_url %>
         </div>
         
         <ul id='navigation'>
@@ -18,7 +17,7 @@
           
           <% if session[:user_id].blank? %>
             <li><%= link_to "Log in" %></li>
-            <li><%= link_to "Register" %></li>
+            <li><%= link_to "Log in" %></li>
 
           <% else %>
             <li><%= link_to "Log out <span class=\"small\">(username)</span>" %></li>
@@ -31,9 +30,7 @@
       <div id='contents'>
         <div id='page_title_container'>
           <h1 class='title'><%= yield(:title) || "Untitled" %></h1>
-          <% if !yield(:subtitle).blank? %>
-            <h3 class='subtitle'><%= yield(:subtitle) || "Description goes here" %></h3>
-          <% end %>
+          <h3 class='subtitle'><%= yield(:subtitle) || "Description goes here" %></h3>
         </div>
         
         <%= yield %>
