@@ -30,17 +30,14 @@ Feature: Manage movies
       
       
   Scenario: Show
-  Given the following movie:
-    | Title                   | Rating | Genre            | Synopsis                      |
-    | Raiders of the Lost Ark | PG-13  | Action/Adventure | This is a non-stop thriller.  |
-  And I am on the movies page
-  When I click on "Show"
-  Then I should see "Raiders of the Lost Ark"
-  And I should see "This is a non-stop thriller."
+    Given the following movie:
+      | Title                   | Rating | Genre            | Synopsis                      |
+      | Raiders of the Lost Ark | PG-13  | Action/Adventure | This is a non-stop thriller.  |
+    And I am on the movies page
+    When I click on "Show"
+    Then I should see "Raiders of the Lost Ark"
+    And I should see "This is a non-stop thriller."
     
-  
-    
-
   Scenario: Delete
     Given the following movies:
       | Title                   | Rating | Genre            |
