@@ -9,11 +9,11 @@
   </p>
   <p>
     <%= f.label :rating %><br />
-    <%= f.select :rating, %w[Unrated G PG PG-13 R NC-17] %>
+    <%= f.select :rating, Movie::RATINGS %>
   </p>
   <p>
     <%= f.label :genre %><br />
-    <%= f.select :genre, %w[Action/Adventure Comedy SciFi] %>
+    <%= f.select :genre, Movie::GENRES %>
   </p>
   <p>
     <%= f.label :synopsis %><br />

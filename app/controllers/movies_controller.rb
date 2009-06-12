@@ -62,7 +62,7 @@ class MoviesController < ApplicationController
     respond_to do |format|
       if @movie.update_attributes(params[:movie])
         flash[:notice] = 'Movie was successfully updated.'
-        format.html { redirect_to(@movie) }
+        format.html { redirect_to(movies_path) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

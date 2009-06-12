@@ -9,11 +9,11 @@
   </p>
   <p>
     <%= f.label :rating %><br />
-    <%= f.text_field :rating %>
+    <%= f.select :rating, Movie::RATINGS %>
   </p>
   <p>
     <%= f.label :genre %><br />
-    <%= f.text_field :genre %>
+    <%= f.select :genre, Movie::GENRES %>
   </p>
   <p>
     <%= f.label :synopsis %><br />
