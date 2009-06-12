@@ -20,11 +20,21 @@ Spork.prefork do
 
   require 'spec/rails'
   require 'cucumber/rails/rspec'
+  
+  # Examples:
+  # "'Foo', 'Bar', and 'Jar'".extract_list # => ["Foo", "Bar", "Jar"]
+  # '"Dog", "Cat"'.extract_list # => ["Dog", "Cat"]
+  class String
+    def extract_list
+      self.scan((/['"](.*?)["']/)).flatten
+    end                                                                                                                                                                                                        
+  end
+  
 end
  
 Spork.each_run do
   # This code will be run each time you run your specs.
-  require 'cucumber/rails/world'
+  require 'cucumber/rails/world'  
 
   # Comment out the next line if you don't want transactions to
   # open/roll back around each scenario

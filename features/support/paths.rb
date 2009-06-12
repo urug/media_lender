@@ -13,8 +13,8 @@ module NavigationHelpers
     when /the new movie page/
       new_movie_path
 
-    when /the new movie page/
-      new_movie_path
+    when /the movies page/
+      movies_path
 
     
     # Add more mappings here.

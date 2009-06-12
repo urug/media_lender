@@ -1,7 +1,3 @@
-Given /^the following movies:$/ do |movies|
-  Movie.create!(movies.hashes)
-end
-
 When /^I delete the (\d+)(?:st|nd|rd|th) movie$/ do |pos|
   visit movies_url
   within("table > tr:nth-child(#{pos.to_i+1})") do
@@ -9,7 +5,7 @@ When /^I delete the (\d+)(?:st|nd|rd|th) movie$/ do |pos|
   end
 end
 
-Then /^I should see the following movies:$/ do |movies|
+Then /^I should see the following movies?:$/ do |movies|
   movies.rows.each_with_index do |row, i|
     row.each_with_index do |cell, j|
       response.should have_selector("table > tr:nth-child(#{i+2}) > td:nth-child(#{j+1})") { |td|
