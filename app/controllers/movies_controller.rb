@@ -1,4 +1,7 @@
 class MoviesController < ApplicationController
+  
+  before_filter :verify_logged_in
+  
   # GET /movies
   # GET /movies.xml
   def index
@@ -80,6 +83,14 @@ class MoviesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(movies_url) }
       format.xml  { head :ok }
+    end
+  end
+  
+  private
+  
+  def verify_logged_in
+    if !current_user
+      redirect_to welcome_path
     end
   end
 end

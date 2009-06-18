@@ -2,7 +2,7 @@
   <head>
     <title>Movie Lender</title>
     <%= stylesheet_link_tag 'application' %>
-    <%= use_theme('bitbucket') %>
+    <%= use_theme('slicehost') %>
   </head>
   <body>
   
@@ -10,19 +10,21 @@
       <div id='header'>
 
         <div id='logo'>
-          <h1>Movie Lender</h1>
+          <%= link_to image_tag("logo.png", :border => 0, :alt => "Media Lender"), root_path %>
         </div>
         
         <ul id='navigation'>
-          <li><%= link_to "Home" %></li>
           
-          <% if session[:user_id].blank? %>
-            <li><%= link_to "Log in" %></li>
-            <li><%= link_to "Register" %></li>
-
+          <% if current_user %>
+            <li><%= link_to "My Movies", root_path %></li>
+            <li><%= link_to "Edit Profile", edit_user_path(:current) %></li>
+            <li><%= link_to "Log out <span class=\"small\">(#{current_user.username})</span>", logout_path %></li>
+            
           <% else %>
-            <li><%= link_to "Log out <span class=\"small\">(username)</span>" %></li>
-          
+            <li><%= link_to "Home", welcome_path %></li>
+            <li><%= link_to "Login", login_path %></li>
+            <li><%= link_to "Register", new_user_path %></li>
+
           <% end %>
         </ul>
         <div class='clear'></div>
@@ -35,6 +37,8 @@
             <h3 class='subtitle'><%= yield(:subtitle) || "Description goes here" %></h3>
           <% end %>
         </div>
+        
+        <%= display_flash(flash) %>
         
         <%= yield %>
         
