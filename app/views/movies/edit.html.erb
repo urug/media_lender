@@ -1,0 +1,8 @@
+<h1>Editing movie</h1>
+
+<% form_for(@movie) do |f| %>
+  <%= render :partial => "form", :locals => { :f => f } %>
+<% end %>
+
+<%= link_to 'Show', @movie %> |
+<%= link_to 'Back', movies_path %>
