@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  
+  map.movies_by_letter 'movies/sorted/:letter', 
+                       :controller => "movies", 
+                       :action => "sorted"
   map.resources :movies
 
   # The priority is based upon order of creation: first created -> highest priority.

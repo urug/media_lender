@@ -3,11 +3,22 @@ class MoviesController < ApplicationController
   # GET /movies.xml
   def index
     @movies = Movie.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @movies }
     end
+  end
+  
+  def sorted
+    @letter = params[:letter]
+    if @letter.blank?
+      @movies = Movie.all
+    elsif @letter == "numbers"
+      @movies = Movie.all_by_numbers
+    else
+      @movies = Movie.all_by_letter(@letter)
+    end
+    render :action => "index"
   end
 
   # GET /movies/1

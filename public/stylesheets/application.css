@@ -12,6 +12,29 @@ a {
   color: #0000FF;
 }
 
+.box {
+	background-color: #efefef;
+	border: 1px solid #ccc;
+	padding: 10px;
+	margin: 10px 0px;
+	text-align: center;
+	color: #999;
+}
+
+.box span.strong {
+	color: #000;
+	font-weight: bold;
+}
+
+.box a {
+	color: #999;
+	text-decoration: none;
+}
+
+.box a:hover {
+	text-decoration: underline;
+}
+
 .clear {
   clear: both;
   height: 0;

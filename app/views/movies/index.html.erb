@@ -1,26 +1,48 @@
 <h1>Listing movies</h1>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Rating</th>
-    <th>Genre</th>
-    <th>Synopsis</th>
-  </tr>
+<div class="box">
+  <% if @letter.blank? %>
+    <span class="strong">All</span>
+  <% else %>
+    <%= link_to "All", movies_path %>
+  <% end %> |
+  <% ("A".."Z").each do |letter| %>
+    <% if @letter == letter %>
+      <span class="strong"><%= letter %></span>
+    <% else %>
+      <%= link_to letter, movies_by_letter_path(letter) %>
+    <% end %> |
+  <% end %>
+  <% if @letter == "numbers" %>
+    <span class="strong">#</span>
+  <% else %>
+    <%= link_to "#", movies_by_letter_path("numbers") %>
+  <% end %>
+</div>
 
+<table class="hor-zebra">
+  <thead>
+    <tr>
+      <th class="col">Title</th>
+      <th class="col">Rating</th>
+      <th class="col">Genre</th>
+      <th class="col">Synopsis</th>
+      <th class="col" width="140" style="text-align: right;"><%= link_to 'New movie', new_movie_path %></th>
+    </tr>
+  </thead>
+  <tbody>
 <% @movies.each do |movie| %>
-  <tr>
+  <tr class="<%= cycle("odd", "even") %>">
     <td><%=h movie.title %></td>
     <td><%=h movie.rating %></td>
     <td><%=h movie.genre %></td>
     <td><%=h movie.synopsis %></td>
-    <td><%= link_to 'Show', movie %></td>
-    <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
-    <td><%= link_to 'Destroy', movie, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td style="text-align: right;">
+      <%= link_to 'Show', movie %> |
+      <%= link_to 'Edit', edit_movie_path(movie) %> |
+      <%= link_to 'Destroy', movie, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
+  </tbody>
 </table>
-
-<br />
-
-<%= link_to 'New movie', new_movie_path %>
+<br/>
