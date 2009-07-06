@@ -1,3 +1,9 @@
 = Media Lender
 
 A demo Rails app that URUG wrote for a community course we developed
+
+= Populate the Database
+
+To populate the database with mock data, run 
+
+  rake db:populate:one
