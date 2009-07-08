@@ -50,6 +50,10 @@ a {
   margin-top: 20px;
 }
 
+#header {
+  text-align:right;
+}
+
 #flash_notice, #flash_error {
   padding: 5px 8px;
   margin: 10px 0;

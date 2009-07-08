@@ -6,8 +6,18 @@
     <%= stylesheet_link_tag 'tables', 'application' %>
     <%= yield(:head) %>
   </head>
-  <body>
+  <body>    
     <div id="container">
+      <% if show_header? %>
+        <div id="header">
+          <% if logged_in? %>
+            Welcome <%= current_user.first_name %> | <%= link_to 'logout', session_path, :method => :delete %>
+          <% else %>
+            <%= link_to 'login', new_session_path %>
+          <% end %>
+        </div>
+      <% end %>
+      
       <%- flash.each do |name, msg| -%>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <%- end -%>

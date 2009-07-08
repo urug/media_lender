@@ -1,0 +1,17 @@
+<h1>Login</h1>
+
+<% form_tag session_path do -%>
+  <p>
+    <label for="login">login:</label><br />
+    <%= text_field_tag :login, @login %>
+  </p>
+
+  <p>
+    <label for="password">password:</label><br />
+    <%= password_field_tag :password %>
+  </p>
+
+  <p>
+    <%= submit_tag "Login" %> or <%= link_to 'Sign up for an account', new_user_path %>
+  </p>
+<% end -%>
