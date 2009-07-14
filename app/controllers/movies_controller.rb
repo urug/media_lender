@@ -1,10 +1,10 @@
 class MoviesController < ApplicationController
-  before_filter :authenticate, :except => [:index, :sorted, :show]
+  before_filter :authenticate
   
   # GET /movies
   # GET /movies.xml
   def index
-    @movies = Movie.all
+    @movies = current_user.movies
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @movies }
@@ -14,11 +14,11 @@ class MoviesController < ApplicationController
   def sorted
     @letter = params[:letter]
     if @letter.blank?
-      @movies = Movie.all
+      @movies = current_user.movies
     elsif @letter == "numbers"
-      @movies = Movie.all_by_numbers
+      @movies = current_user.movies.all_by_numbers
     else
-      @movies = Movie.all_by_letter(@letter)
+      @movies = current_user.movies.all_by_letter(@letter)
     end
     render :action => "index"
   end
@@ -26,7 +26,7 @@ class MoviesController < ApplicationController
   # GET /movies/1
   # GET /movies/1.xml
   def show
-    @movie = Movie.find(params[:id])
+    @movie = current_user.movies.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -37,7 +37,7 @@ class MoviesController < ApplicationController
   # GET /movies/new
   # GET /movies/new.xml
   def new
-    @movie = Movie.new
+    @movie = current_user.movies.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -47,13 +47,13 @@ class MoviesController < ApplicationController
 
   # GET /movies/1/edit
   def edit
-    @movie = Movie.find(params[:id])
+    @movie = current_user.movies.find(params[:id])
   end
 
   # POST /movies
   # POST /movies.xml
   def create
-    @movie = Movie.new(params[:movie])
+    @movie = current_user.movies.new(params[:movie])
 
     respond_to do |format|
       if @movie.save
@@ -70,7 +70,7 @@ class MoviesController < ApplicationController
   # PUT /movies/1
   # PUT /movies/1.xml
   def update
-    @movie = Movie.find(params[:id])
+    @movie = current_user.movies.find(params[:id])
 
     respond_to do |format|
       if @movie.update_attributes(params[:movie])
@@ -87,7 +87,7 @@ class MoviesController < ApplicationController
   # DELETE /movies/1
   # DELETE /movies/1.xml
   def destroy
-    @movie = Movie.find(params[:id])
+    @movie = current_user.movies.find(params[:id])
     @movie.destroy
 
     respond_to do |format|

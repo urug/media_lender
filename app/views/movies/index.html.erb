@@ -28,7 +28,7 @@
       <th class="col">Genre</th>
       <th class="col">Synopsis</th>
       <th class="col" width="140" style="text-align: right;">
-        <%= link_to 'New movie', new_movie_path if logged_in? %>
+        <%= link_to 'New movie', new_movie_path %>
       </th>
     </tr>
   </thead>
@@ -41,8 +41,9 @@
     <td><%=h movie.synopsis %></td>
     <td style="text-align: right;">
       <%= link_to 'Show', movie %> |
-      <%= link_to_if logged_in?, 'Edit', edit_movie_path(movie) %> |
-      <%= link_to_if logged_in?, 'Destroy', movie, :confirm => 'Are you sure?', :method => :delete %></td>
+      <%= link_to 'Edit', edit_movie_path(movie) %> |
+      <%= link_to'Destroy', movie, :confirm => 'Are you sure?', :method => :delete %>
+    </td>
   </tr>
 <% end %>
   </tbody>
