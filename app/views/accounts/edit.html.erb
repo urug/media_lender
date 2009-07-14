@@ -1,0 +1,35 @@
+<h1>My Account</h1>
+
+<% form_for :account, current_user, :url => account_path, :html => { :method => :put } do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+  </p>
+  <p>
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </p>
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :login %><br />
+    <%= f.text_field :login %>
+  </p>
+  <p>
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </p>
+  <p>
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back to movies', movies_path %>

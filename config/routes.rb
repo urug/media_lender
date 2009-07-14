@@ -6,6 +6,7 @@ ActionController::Routing::Routes.draw do |map|
                        :action => "sorted"
   map.resources :movies
   map.resources :users
+  map.resource  :account
 
   # The priority is based upon order of creation: first created -> highest priority.
 

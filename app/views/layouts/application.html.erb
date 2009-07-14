@@ -11,7 +11,7 @@
       <% if show_header? %>
         <div id="header">
           <% if logged_in? %>
-            Welcome <%= current_user.first_name %> | <%= link_to 'logout', session_path, :method => :delete %>
+            Welcome <%= link_to current_user.first_name, edit_account_path %> | <%= link_to 'logout', session_path, :method => :delete %>
           <% else %>
             <%= link_to 'login', new_session_path %>
           <% end %>
