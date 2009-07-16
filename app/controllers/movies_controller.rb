@@ -3,8 +3,14 @@ class MoviesController < ApplicationController
   
   # GET /movies
   # GET /movies.xml
+
   def index
-    @movies = current_user.movies
+    qualifiers = {:order => sort_order('created_at')}
+    if(params[:s])
+      qualifiers[:conditions] = ['title like ?', "%#{params[:s]}%"]
+    end
+    @movies = current_user.movies.all(qualifiers)
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @movies }

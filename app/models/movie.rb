@@ -1,5 +1,6 @@
 class Movie < ActiveRecord::Base
   belongs_to :user
+  named_scope :family_friendly, :conditions=>"rating in ('G', 'PG')"
   
   validates_presence_of :user_id, :title, :rating, :genre
   validates_uniqueness_of :title, :scope => :user_id

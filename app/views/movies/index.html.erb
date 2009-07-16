@@ -20,13 +20,18 @@
   <% end %>
 </div>
 
+<% form_tag(movies_path, :method => "get") do %>
+  <%= text_field_tag(:s) %>
+  <%= submit_tag("Search", :name => nil) %>
+<% end %>
+
 <table class="hor-zebra">
   <thead>
     <tr>
       <th class="col">Title</th>
       <th class="col">Rating</th>
       <th class="col">Genre</th>
-      <th class="col">Synopsis</th>
+      <th class="col"><%= sort_link 'Synopsis', :synopsis %></th>
       <th class="col" width="140" style="text-align: right;">
         <%= link_to 'New movie', new_movie_path %>
       </th>

@@ -9,7 +9,11 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
   
   helper_method :current_user, :logged_in?
-  
+
+  def sort_order(default)
+    "#{(params[:c] || default.to_s).gsub(/[\s;'\"]/,'')} #{params[:d] == 'down' ? 'DESC' : 'ASC'}"
+  end
+
   protected
     def authenticate
       unless logged_in?
