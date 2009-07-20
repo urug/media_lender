@@ -3,7 +3,6 @@ log/*.log
 tmp/**/*
 *.sw?
 tmp/*
-config/database.yml
 db/*.sqlite3
 *.sql
 lib/tasks/db_nuke.rake
