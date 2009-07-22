@@ -55,6 +55,48 @@ namespace :db do
         parse_and_create_movie(row, user)
       end
     end
+
+    desc "Add an additional user"
+    task :four => :environment do
+      
+      user = User.find_by_email("jisraelsen@gmail.com")
+      if user.nil?
+        user = User.new(
+          :first_name => "Jeremy",
+          :last_name => "Israelsen",
+          :email => "jisraelsen@gmail.com",
+          :login => "jeremy",
+          :password => "test",
+          :password_confirmation => "test"
+        )
+        user.save
+      end 
+
+      titles = [
+        "Return to the Blue Lagoon",
+        "Must Have Dogs",
+        "Three Amigos!",
+        "Barbarella",
+        "Ernest Goes to Jail"
+      ]
+
+      titles.each do |title|
+        begin
+          imdb_movie = IMDB.new(title)
+          movie = Movie.new
+          movie.user_id = user.id
+          movie.rating = imdb_movie.certification["\nUSA"]
+          movie.title = title
+          movie.genre = imdb_movie.genre.first
+          movie.synopsis = imdb_movie.plot
+          movie.save!
+        rescue => ex
+          puts "\nError thrown on movie '#{title}'"
+          puts ex
+        end
+      end
+
+    end
     
   end
 end

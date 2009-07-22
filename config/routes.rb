@@ -1,9 +1,19 @@
 ActionController::Routing::Routes.draw do |map|
+
+  map.resources :friendships
+
   map.resource :session
+  
+  map.friends 'friends', :controller => 'friends', :action => 'index'
+  map.invite_friends 'friends/invite', :controller => 'friends', :action => 'invite'
+  
+  map.pickup_invitation 'pickup_invitation/:invite_token', :controller => 'users', :action => 'pickup_invitation'
   
   map.movies_by_letter 'movies/sorted/:letter', 
                        :controller => "movies", 
                        :action => "sorted"
+  map.friends_movies '/movies/friends', :controller => 'movies', :action => 'friends'                     
+  map.borrow_movie 'movies/:id/borrow', :controller => 'movies', :action => 'borrow'
   map.resources :movies
   map.resources :users
   map.resource  :account

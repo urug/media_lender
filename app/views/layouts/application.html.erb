@@ -11,9 +11,14 @@
       <% if show_header? %>
         <div id="header">
           <% if logged_in? %>
-            Welcome <%= link_to current_user.first_name, edit_account_path %> | <%= link_to 'logout', session_path, :method => :delete %>
+            <%= link_to "My Movies", movies_path %> |
+            <%= link_to "Friends Movies", friends_movies_path %> |
+            <%= link_to "Friends", friends_path %> |
+            <%= link_to "Invite Friend", invite_friends_path %> |
+            <%= link_to "My Account", edit_account_path %> |
+            <%= link_to 'Logout', session_path, :method => :delete %>
           <% else %>
-            <%= link_to 'login', new_session_path %>
+            <%= link_to 'Login', new_session_path %>
           <% end %>
         </div>
       <% end %>

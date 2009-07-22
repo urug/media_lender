@@ -1,0 +1,12 @@
+<h1>Invite Friends</h1>
+<p>Enter the email addresses below of people you would like to invite.</p>
+
+<% form_tag :action => "invite" do %>
+  <p>
+    <label>Email Addresses (comma separated)</label><br/>
+    <%= text_area_tag :emails, "", :cols => 60, :rows => 10 %>
+  </p>
+  <p>
+    <%= submit_tag "Send Invitations" %>
+  </p>
+<% end %>
