@@ -4,9 +4,21 @@ ActionController::Routing::Routes.draw do |map|
   map.movies_by_letter 'movies/sorted/:letter', 
                        :controller => "movies", 
                        :action => "sorted"
+  map.pickup_invitation 'pickup_invitation/:invite_token', 
+                       :controller => 'users', 
+                       :action => 'pickup_invitation'
+                       
+  map.friends 'friends', :controller => 'friends', :action => 'index'
+  map.invite_friends 'friends/invite', :controller => 'friends', :action => 'invite'
+  
+  map.friends_movies '/movies/friends', :controller => 'movies', :action => 'friends'  
+  map.borrow_movie 'movies/:id/borrow', :controller => 'movies', :action => 'borrow'
+                       
   map.resources :movies
   map.resources :users
   map.resource  :account
+
+  map.root :controller => 'movies'
 
   # The priority is based upon order of creation: first created -> highest priority.
 

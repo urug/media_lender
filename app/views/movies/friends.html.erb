@@ -1,0 +1,33 @@
+<h1>Friends Movies</h1>
+
+<table class="hor-zebra" width="100%">
+  <thead>
+    <tr>
+      <th class="col">Title</th>
+      <th class="col">Rating</th>
+      <th class="col">Genre</th>
+      <th class="col">Synopsis</th>
+      <th class="col">Owner</th>
+      <th class="col">&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+<% @movies.each do |movie| %>
+  <tr class="<%= cycle("odd", "even") %>">
+    <td><%=h movie.title %></td>
+    <td><%=h movie.rating %></td>
+    <td><%=h movie.genre %></td>
+    <td><%=h movie.synopsis %></td>
+    <td><%= movie.user.full_name %></td>
+    <td style="text-align: right;">
+      <% if movie.borrower.nil? %>
+        <%= link_to "Borrow", borrow_movie_path(movie) %>
+      <% else %>
+        Unavailable
+      <% end %>
+    </td>
+  </tr>
+<% end %>
+  </tbody>
+</table>
+<br/>

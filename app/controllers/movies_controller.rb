@@ -101,4 +101,32 @@ class MoviesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def friends
+    @movies = current_user.friends.collect{ |f| f.movies }.flatten
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @movies }
+    end
+  end
+
+  def borrow
+    movie = current_user.find_friends_movie_by_id(params[:id])
+    if movie
+      if movie.borrower
+        flash[:notice] = "This movie is not available."
+      else
+        if movie.add_borrower(current_user)
+          flash[:notice] = "A message has been sent to the movie owner to lend it to you."
+        else
+          flash[:notice] = "We are unable to contact the owner at this time."
+        end
+      end
+    else
+      flash[:notice] = "This movie is not available to you."
+    end
+    redirect_to friends_movies_path
+  end
+  
 end

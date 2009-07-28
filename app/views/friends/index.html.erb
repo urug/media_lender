@@ -1,0 +1,15 @@
+<h1>Friends</h1>
+
+<h3>Friend I've Added</h3>
+<ul>
+  <% @friends.each do |friend| %>
+    <li><%= friend.full_name %></li>
+  <% end %>
+</ul>
+
+<h3>People I'm Friends To</h3>
+<ul>
+  <% @inverse_friends.each do |friend| %>
+    <li><%= friend.full_name %></li>
+  <% end %>
+</ul>
