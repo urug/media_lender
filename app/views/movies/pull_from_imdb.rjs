@@ -1,0 +1,5 @@
+page << "$('movie_title').setValue('#{@imdb_movie.title}')"
+page << "$('movie_rating').setValue('#{@imdb_movie.certification["\nUSA"]}')"
+page << "$('movie_genre').setValue('#{@imdb_movie.genre.first}')"
+page << "$('movie_synopsis').setValue('#{@imdb_movie.plot}')"
+page.visual_effect :highlight, 'new_movie', :duration => 3

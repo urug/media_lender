@@ -129,4 +129,13 @@ class MoviesController < ApplicationController
     redirect_to friends_movies_path
   end
   
+  def pull_from_imdb
+    title = params[:movie][:title]
+    @imdb_movie = IMDB.new(title)
+    puts "TITLE: #{@imdb_movie.title}"
+    puts "RATING: #{@imdb_movie.certification["\nUSA"]}"
+    puts "GENRE: #{@imdb_movie.genre.first}"
+    puts "SYNOPSIS: #{@imdb_movie.plot}"
+  end
+  
 end

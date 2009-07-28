@@ -1,21 +1,30 @@
 <%= f.error_messages %>
 
-<p>
-  <%= f.label :title %><br />
-  <%= f.text_field :title %>
-</p>
-<p>
-  <%= f.label :rating %><br />
-  <%= f.select :rating, Movie::RATINGS, :include_blank => true %>
-</p>
-<p>
-  <%= f.label :genre %><br />
-  <%= f.select :genre, Movie::GENRES, :include_blank => true %>
-</p>
-<p>
-  <%= f.label :synopsis %><br />
-  <%= f.text_area :synopsis %>
-</p>
-<p>
-  <%= f.submit %>
-</p>
+<div id="movie_form">
+
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+    <% if @movie.new_record? %>
+      <%= link_to_remote "Import from IMDB", 
+            :url => { :action => "pull_from_imdb" }, 
+            :with => "Form.serialize('new_movie')" %>
+    <% end %>
+  </p>
+  <p>
+    <%= f.label :rating %><br />
+    <%= f.select :rating, Movie::RATINGS, :include_blank => true %>
+  </p>
+  <p>
+    <%= f.label :genre %><br />
+    <%= f.select :genre, Movie::GENRES, :include_blank => true %>
+  </p>
+  <p>
+    <%= f.label :synopsis %><br />
+    <%= f.text_area :synopsis %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+  
+</div>
